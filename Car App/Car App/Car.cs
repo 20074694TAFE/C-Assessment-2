@@ -8,14 +8,14 @@ namespace Car_App
 {
     class Car
     {
-        int regoNumber;
-        Make carMake;
-        Model carModel;
+        private string regoNumber;
+        private Make carMake;
+        private Model carModel;
         private int carYear;
         private float price;
         string photoFilename;
 
-        public int RegoNumber
+        public string RegoNumber
         {
             get
             {
@@ -23,7 +23,14 @@ namespace Car_App
             }
             set
             {
-                regoNumber = value;
+                if(value.Length == 8)
+                {
+                    regoNumber = value.ToUpper();
+                }
+                else
+                {
+                    throw new ArgumentException();
+                }
             }
         }
 
@@ -47,14 +54,7 @@ namespace Car_App
             }
             set
             {
-                Type t = value.GetType();
-                if (t == typeof(Model)){
-                    carModel = value;
-                }
-                else
-                {
-                    carModel = Model.Sudan;
-                }
+                carModel = value;
             }
         }
 
@@ -68,11 +68,11 @@ namespace Car_App
             {
                 if(value >= 1900)
                 {
-                    carYear = value;
+                    throw new ArgumentOutOfRangeException();
                 }
                 else
                 {
-                    carYear = 1900;
+                    carYear = value;
                 }
             }
         }
@@ -87,7 +87,7 @@ namespace Car_App
             {
                 if(value < 0)
                 {
-                    price = 0;
+                    throw new ArgumentOutOfRangeException();
                 }
                 else
                 {
@@ -104,9 +104,9 @@ namespace Car_App
         /// </summary>
         public Car()
         {
-            regoNumber = 1000;
-            carMake = Make.White;
-            carModel = Model.Sudan;
+            RegoNumber = "10002GFD";
+            CarMake = Make.White;
+            CarModel = Model.Sudan;
             CarYear = 1950;
             Price = 20000.00f;
             photoFilename = "";
@@ -117,9 +117,9 @@ namespace Car_App
         /// </summary>
         public Car(Car car)
         {
-            regoNumber = car.regoNumber;
-            carMake = car.carMake;
-            carModel = car.carModel;
+            RegoNumber = car.RegoNumber;
+            CarMake = car.CarMake;
+            CarModel = car.CarModel;
             CarYear = car.CarYear;
             Price = car.Price;
             photoFilename = car.photoFilename;
@@ -128,21 +128,25 @@ namespace Car_App
         /// <summary>
         /// Input Constructor - Creates new Car object with input values, requires ALL values.
         /// </summary>
-        /// <param name="regoNumber"></param>
+        /// <param name="regoNumber">8 letter string, will throw exception otherwise.</param>
         /// <param name="carMake"></param>
         /// <param name="carModel"></param>
-        /// <param name="CarYear"></param>
-        /// <param name="Price"></param>
-        /// <param name="photoFilename"></param>
-        public Car(int regoNumber, Make carMake, Model carModel, 
-            int CarYear, float Price, string photoFilename)
+        /// <param name="carYear">Must be between 1900 and 2022, will throw exception otherwise.</param>
+        /// <param name="price">Must be greater than 0, will throw exception otherwise.</param>
+        public Car(string regoNumber, Make carMake, Model carModel, 
+            int carYear, float price)
         {
-            this.regoNumber = regoNumber;
-            this.carMake = carMake;
-            this.carModel = carModel;
-            this.CarYear = CarYear;
-            this.Price = Price;
-            this.photoFilename = photoFilename;
+            RegoNumber = regoNumber;
+            CarMake = carMake;
+            CarModel = carModel;
+            CarYear = carYear;
+            Price = price;
+            photoFilename = ""; //TODO: Add filepath based on make and model.
+        }
+
+        public override string ToString()
+        {
+            return RegoNumber + " " + CarMake + " " + CarModel + " " + CarYear + " " + Price;
         }
     }
 

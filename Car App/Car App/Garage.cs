@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -6,10 +7,56 @@ using System.Threading.Tasks;
 
 namespace Car_App
 {
-    class Garage
+    class Garage /*: IEnumerable*/
     {
         Car[] parkingSpots = new Car[20];
         public List<Car> SoldCars = new List<Car>();
+
+        /// <summary>
+        /// <para>Adds car to first available position, returns true if successful, returns false if not.</para>
+        /// <br>A false return indicates that there are no available positions left.</br>
+        /// </summary>
+        /// <param name="car"></param>
+        /// <returns></returns>
+        public bool TryAddCar(Car car)
+        {
+            var list = GetEmptySpots();
+            if(list.Count > 0)
+            {
+                if(TryAddCarByPosition(car, list.First()))
+                {
+                    return true;
+                }
+            }
+            return false;
+        }
+        /// <summary>
+        /// <para>Adds car by position, returns true if successful, returns false if not.</para>
+        /// <br>A false return indicates that the current position is already taken.</br>
+        /// </summary>
+        /// <param name="car"></param>
+        /// <param name="position">Number between 1 and 20</param>
+        /// <returns></returns>
+        public bool TryAddCarByPosition(Car car, int position)
+        {
+            if(parkingSpots[position - 1] == null)
+            {
+                parkingSpots[position - 1] = car;
+                return true;
+            }
+            return false;
+        }
+
+        public bool TryRemoveCarByPosition(Car car, int position)
+        {
+            if (parkingSpots[position - 1] != null)
+            {
+                SoldCars.Add(car);
+                parkingSpots[position - 1] = null;
+                return true;
+            }
+            return false;
+        }
 
         public Dictionary<int, Car> GetDictCarsFromLot()
         {
@@ -31,9 +78,9 @@ namespace Car_App
             return cars;
         }
 
-        public Car GetCarBySpot(int spot)
+        public Car GetCarByPosition(int position)
         {
-            return parkingSpots[spot + 1];
+            return parkingSpots[position - 1];
         }
 
         public List<Car> SearchByBudget(List<Car> cars, float min = 0f, float max = float.MaxValue)
@@ -51,19 +98,33 @@ namespace Car_App
             return cars.Where(car => car.CarMake == make).ToList();
         }
 
-        public Car GetCarByRego(int rego)
+        public Car GetCarByRego(string rego)
         {
-            return parkingSpots.ToList<Car>().Find(car => car.RegoNumber == rego);
+            return parkingSpots.ToList().Find(car => car.RegoNumber == rego.ToUpper());
         }
 
-        public bool TryGetCarByRego(int rego, out Car car)
+        //public bool TryGetCarByRego(string rego, out Car car)
+        //{
+        //    car = parkingSpots.ToList().Find(c => c.RegoNumber == rego.ToUpper());
+        //    if(car != null)
+        //    {
+        //        return true;
+        //    }
+        //    return false;
+        //}
+
+        public bool TryGetCarByRego(string rego, out Car car)
         {
-            car = parkingSpots.ToList<Car>().Find(c => c.RegoNumber == rego);
-            if(car != null)
+            try
             {
+                car = parkingSpots.ToList().Find(c => c.RegoNumber == rego.ToUpper());
                 return true;
             }
-            return false;
+            catch (ArgumentNullException)
+            {
+                car = null;
+                return false;
+            }
         }
 
         public List<int> GetEmptySpots()
@@ -79,5 +140,59 @@ namespace Car_App
             return list;
         }
 
+        //IEnumerator IEnumerable.GetEnumerator()
+        //{
+        //    return (IEnumerator)GetEnumerator();
+        //}
+
+        //public GarageEnum GetEnumerator()
+        //{
+        //    return new GarageEnum(parkingSpots);
+        //}
     }
+
+   //class GarageEnum : IEnumerator
+   // {
+   //     Car[] parkingSpots;
+   //     int position = -1;
+
+   //     public GarageEnum(Car[] list)
+   //     {
+   //         parkingSpots = list;
+   //     }
+
+   //     object IEnumerator.Current
+   //     {
+   //         get
+   //         {
+   //             return Current;
+   //         }
+   //     }
+
+   //     public Car Current
+   //     {
+   //         get
+   //         {
+   //             try
+   //             {
+   //                 return parkingSpots[position];
+   //             }
+   //             catch (ArgumentOutOfRangeException)
+   //             {
+   //                 throw new InvalidOperationException();
+   //             }
+   //         }
+   //     }
+
+   //     public bool MoveNext()
+   //     {
+   //         position++;
+   //         return (position < parkingSpots.Length);
+   //     }
+
+   //     public void Reset()
+   //     {
+   //         position = -1;
+   //     }
+   // }
 }
