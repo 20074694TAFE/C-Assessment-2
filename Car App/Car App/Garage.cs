@@ -20,7 +20,7 @@ namespace Car_App
         /// <returns></returns>
         public bool TryAddCar(Car car)
         {
-            var list = GetEmptySpots();
+            List<int> list = GetEmptySpots();
             if(list.Count > 0)
             {
                 if(TryAddCarByPosition(car, list.First()))
@@ -56,6 +56,18 @@ namespace Car_App
                 return true;
             }
             return false;
+        }
+
+        public bool ValidateUniqueRego(Car car)
+        {
+            foreach (Car parkedCar in parkingSpots)
+            {
+                if (parkedCar.RegoNumber == car.RegoNumber)
+                {
+                    return false;
+                }
+            }
+            return true;
         }
 
         public Dictionary<int, Car> GetDictCarsFromLot()
@@ -139,6 +151,11 @@ namespace Car_App
             }
             return list;
         }
+
+        //public int GetEmptySpotsCount()
+        //{
+        //    return GetEmptySpots().Count();
+        //}
 
         //IEnumerator IEnumerable.GetEnumerator()
         //{
