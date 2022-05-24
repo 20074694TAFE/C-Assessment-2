@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Car_App
 {
-    class Car
+    public class Car
     {
         private string regoNumber;
         private Make carMake;
@@ -66,7 +66,7 @@ namespace Car_App
             }
             set
             {
-                if(value >= 1900)
+                if(value <= 1900)
                 {
                     throw new ArgumentOutOfRangeException();
                 }
@@ -150,7 +150,7 @@ namespace Car_App
         }
     }
 
-    enum Make
+    public enum Make
     {
         White,
         Black,
@@ -160,7 +160,7 @@ namespace Car_App
         Yellow
     }
 
-    enum Model
+    public enum Model
     {
         SUV,
         Truck,

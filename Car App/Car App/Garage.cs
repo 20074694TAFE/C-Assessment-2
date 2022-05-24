@@ -7,23 +7,23 @@ using System.Threading.Tasks;
 
 namespace Car_App
 {
-    class Garage /*: IEnumerable*/
+    public class Garage /*: IEnumerable*/
     {
-        Car[] parkingSpots = new Car[20];
+        public Car[] parkingSpots = new Car[20];
         public List<Car> SoldCars = new List<Car>();
 
         /// <summary>
         /// <para>Adds car to first available position, returns true if successful, returns false if not.</para>
-        /// <br>A false return indicates that there are no available positions left.</br>
+        /// <br>A false return indicates that there are no available positions left, or not unique rego.</br>
         /// </summary>
         /// <param name="car"></param>
         /// <returns></returns>
         public bool TryAddCar(Car car)
         {
             List<int> list = GetEmptySpots();
-            if(list.Count > 0)
+            if (list.Count > 0)
             {
-                if(TryAddCarByPosition(car, list.First()))
+                if (TryAddCarByPosition(car, list.First()))
                 {
                     return true;
                 }
@@ -32,14 +32,14 @@ namespace Car_App
         }
         /// <summary>
         /// <para>Adds car by position, returns true if successful, returns false if not.</para>
-        /// <br>A false return indicates that the current position is already taken.</br>
+        /// <br>A false return indicates that the current position is already taken, or not unique rego.</br>
         /// </summary>
         /// <param name="car"></param>
         /// <param name="position">Number between 1 and 20</param>
         /// <returns></returns>
         public bool TryAddCarByPosition(Car car, int position)
         {
-            if(parkingSpots[position - 1] == null)
+            if (parkingSpots[position - 1] == null)
             {
                 parkingSpots[position - 1] = car;
                 return true;
@@ -47,11 +47,11 @@ namespace Car_App
             return false;
         }
 
-        public bool TryRemoveCarByPosition(Car car, int position)
+        public bool TryRemoveCarByPosition(int position)
         {
             if (parkingSpots[position - 1] != null)
             {
-                SoldCars.Add(car);
+                SoldCars.Add(parkingSpots[position - 1]);
                 parkingSpots[position - 1] = null;
                 return true;
             }
@@ -60,11 +60,22 @@ namespace Car_App
 
         public bool ValidateUniqueRego(Car car)
         {
+            
             foreach (Car parkedCar in parkingSpots)
             {
-                if (parkedCar.RegoNumber == car.RegoNumber)
+                if (parkedCar?.RegoNumber == car.RegoNumber)
                 {
                     return false;
+                }
+            }
+            if(SoldCars.Count() != 0)
+            {
+                foreach (Car soldCar in SoldCars)
+                {
+                    if (soldCar?.RegoNumber == car.RegoNumber)
+                    {
+                        return false;
+                    }
                 }
             }
             return true;
@@ -85,7 +96,10 @@ namespace Car_App
             List<Car> cars = new List<Car>();
             foreach(Car car in parkingSpots)
             {
-                cars.Add(car);
+                if(car != null)
+                {
+                    cars.Add(car);
+                }
             }
             return cars;
         }
@@ -93,6 +107,11 @@ namespace Car_App
         public Car GetCarByPosition(int position)
         {
             return parkingSpots[position - 1];
+        }
+
+        public bool HasCar(List<Car> list, Car car)
+        {
+           return list.Contains(car);
         }
 
         public List<Car> SearchByBudget(List<Car> cars, float min = 0f, float max = float.MaxValue)
@@ -110,33 +129,27 @@ namespace Car_App
             return cars.Where(car => car.CarMake == make).ToList();
         }
 
-        public Car GetCarByRego(string rego)
+        public List<Car> SearchByYear(List<Car> cars, int min, int max)
         {
-            return parkingSpots.ToList().Find(car => car.RegoNumber == rego.ToUpper());
+            return cars.Where(car => car.CarYear <= max && car.CarYear >= min).ToList();
         }
 
-        //public bool TryGetCarByRego(string rego, out Car car)
-        //{
-        //    car = parkingSpots.ToList().Find(c => c.RegoNumber == rego.ToUpper());
-        //    if(car != null)
-        //    {
-        //        return true;
-        //    }
-        //    return false;
-        //}
-
-        public bool TryGetCarByRego(string rego, out Car car)
+        public Car GetCarByRego(string rego)
         {
             try
             {
-                car = parkingSpots.ToList().Find(c => c.RegoNumber == rego.ToUpper());
-                return true;
+                Car found = parkingSpots.ToList().Find(car => car.RegoNumber == rego.ToUpper());
+                return found;
             }
-            catch (ArgumentNullException)
+            catch (NullReferenceException)
             {
-                car = null;
-                return false;
+                return null;
             }
+        }
+
+        public int GetPositionOfCar(Car car)
+        {
+            return parkingSpots.ToList().IndexOf(car) + 1;
         }
 
         public List<int> GetEmptySpots()
