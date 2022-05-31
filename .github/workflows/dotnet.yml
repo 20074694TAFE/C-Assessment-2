@@ -24,7 +24,7 @@ jobs:
       with:
         nuget-api-key: ${{ secrets.NuGetAPIKey }}
         nuget-version: '5.x'
-    - run: nuget restore MyProject.sln
+    - run: nuget restore "Car App.sln"
     - name: Build
       run: dotnet build --no-restore
     - name: Test
