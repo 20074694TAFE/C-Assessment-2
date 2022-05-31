@@ -17,11 +17,6 @@
             <RowDefinition Height="*"></RowDefinition>
             <RowDefinition Height="20"></RowDefinition>
         </Grid.RowDefinitions>
-        <Image Grid.Column="1" Grid.Row="1" RenderTransformOrigin="0.5,0.5" Stretch="UniformToFill" HorizontalAlignment="Center" VerticalAlignment="Center" Source="./images/jag1.jpg" Opacity="0.2">
-            <Image.RenderTransform>
-                <RotateTransform Angle="0"></RotateTransform>
-            </Image.RenderTransform>
-        </Image>
         <Grid Grid.Column="1" Grid.Row="1">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="*"></ColumnDefinition>
@@ -31,7 +26,25 @@
                 <RowDefinition Height="*"></RowDefinition>
                 <RowDefinition Height="*"></RowDefinition>
             </Grid.RowDefinitions>
-            <ListBox Grid.RowSpan="2" Background="Black"></ListBox>
+            <ListBox x:Name="ListBoxCars" Grid.RowSpan="2" SelectionChanged="ListBoxSelectionEvent" Foreground="White" Background="Black" >
+            </ListBox>
+            <TextBox x:Name="TextboxRego"  Grid.Column="1" HorizontalAlignment="Left" Height="23" Margin="74,33,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120"/>
+            <TextBox x:Name="TextboxYearMin" Grid.Column="1" HorizontalAlignment="Left" Height="23" Margin="74,115,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120"/>
+            <TextBox x:Name="TextboxYearMax" Grid.Column="1" HorizontalAlignment="Left" Height="23" Margin="199,115,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120"/>
+            <TextBox x:Name="TextboxBudgetMin" Grid.Column="1" HorizontalAlignment="Left" Height="23" Margin="74,143,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120"/>
+            <TextBox x:Name="TextboxBudgetMax" Grid.Column="1" HorizontalAlignment="Left" Height="23" Margin="199,143,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120"/>
+            <Label  x:Name="Positionlabel" Content="Label" Grid.Column="1" HorizontalAlignment="Left" Margin="36,143,0,0" VerticalAlignment="Top" Background="{x:Null}" Foreground="White" Height="32" RenderTransformOrigin="0.5,0.5"/>
+            <Label  x:Name="Positidonlabel" Content="Label" Grid.Column="1" HorizontalAlignment="Left" Margin="36,143,0,0" VerticalAlignment="Top" Background="{x:Null}" Foreground="White" Height="32" RenderTransformOrigin="0.5,0.5"/>
+            <Label  x:Name="Positiofnlabel" Content="Label" Grid.Column="1" HorizontalAlignment="Left" Margin="36,88,0,0" VerticalAlignment="Top" Background="{x:Null}" Foreground="White" Height="32" RenderTransformOrigin="0.5,0.5"/>
+            <Label  x:Name="Positiognlabel" Content="Label" Grid.Column="1" HorizontalAlignment="Left" Margin="36,115,0,0" VerticalAlignment="Top" Background="{x:Null}" Foreground="White" Height="32" RenderTransformOrigin="0.5,0.5"/>
+            <Label  x:Name="MakeLabel" Content="Make:" Grid.Column="1" HorizontalAlignment="Left" Margin="36,61,0,0" VerticalAlignment="Top" Background="{x:Null}" Foreground="White" Height="32" RenderTransformOrigin="0.5,0.5"/>
+            <ComboBox x:Name="ComboboxMake" Grid.Column="1" HorizontalAlignment="Left" Margin="74,61,0,0" VerticalAlignment="Top" Width="120"/>
+            <ComboBox x:Name="ComboboxModel" Grid.Column="1" HorizontalAlignment="Left" Margin="74,88,0,0" VerticalAlignment="Top" Width="120"/>
+            <Button Content="Search" Grid.Column="1" HorizontalAlignment="Left" Margin="75,175,0,0" VerticalAlignment="Top" Width="75" Grid.RowSpan="2" Click="SearchButtonClicked"/>
+            <Button Content="Reset" Grid.Column="1" HorizontalAlignment="Left" Margin="155,175,0,0" VerticalAlignment="Top" Width="75" Grid.RowSpan="2" Click="ResetButtonClicked"/>
+
+
+
         </Grid>
 
     </Grid>

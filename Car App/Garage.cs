@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Car_App
 {
-    public class Garage /*: IEnumerable*/
+    public class Garage : IEnumerable
     {
         public Car[] parkingSpots = new Car[20];
         public List<Car> SoldCars = new List<Car>();
@@ -114,8 +114,12 @@ namespace Car_App
            return list.Contains(car);
         }
 
-        public List<Car> SearchByBudget(List<Car> cars, float min = 0f, float max = float.MaxValue)
+        public List<Car> SearchbyBudget(List<Car> cars, float min = 0f, float max = float.MaxValue)
         {
+            if (min > max)
+            {
+                throw new Exception("Minimum budget value cannot be greater than maximum budget value");
+            }
             return cars.Where(car => car.Price >= min && car.Price <= max).ToList();
         }
 
@@ -124,13 +128,17 @@ namespace Car_App
             return cars.Where(car => car.CarModel == model).ToList();
         }
 
-        public List<Car> SearchByMake(List<Car> cars, Make make)
+        public List<Car> SearchbyMake(List<Car> cars, Make make)
         {
             return cars.Where(car => car.CarMake == make).ToList();
         }
 
-        public List<Car> SearchByYear(List<Car> cars, int min, int max)
+        public List<Car> SearchbyYear(List<Car> cars, int min, int max)
         {
+            if (min > max)
+            {
+                throw new Exception("Minimum year value cannot be greater than maximum year value");
+            }
             return cars.Where(car => car.CarYear <= max && car.CarYear >= min).ToList();
         }
 
@@ -165,64 +173,64 @@ namespace Car_App
             return list;
         }
 
-        //public int GetEmptySpotsCount()
-        //{
-        //    return GetEmptySpots().Count();
-        //}
+        public int GetEmptySpotsCount()
+        {
+            return GetEmptySpots().Count();
+        }
 
-        //IEnumerator IEnumerable.GetEnumerator()
-        //{
-        //    return (IEnumerator)GetEnumerator();
-        //}
+        IEnumerator IEnumerable.GetEnumerator()
+        {
+            return (IEnumerator)GetEnumerator();
+        }
 
-        //public GarageEnum GetEnumerator()
-        //{
-        //    return new GarageEnum(parkingSpots);
-        //}
+        public GarageEnum GetEnumerator()
+        {
+            return new GarageEnum(parkingSpots);
+        }
     }
 
-   //class GarageEnum : IEnumerator
-   // {
-   //     Car[] parkingSpots;
-   //     int position = -1;
+    public class GarageEnum : IEnumerator
+    {
+        Car[] parkingSpots;
+        int position = -1;
 
-   //     public GarageEnum(Car[] list)
-   //     {
-   //         parkingSpots = list;
-   //     }
+        public GarageEnum(Car[] list)
+        {
+            parkingSpots = list;
+        }
 
-   //     object IEnumerator.Current
-   //     {
-   //         get
-   //         {
-   //             return Current;
-   //         }
-   //     }
+        object IEnumerator.Current
+        {
+            get
+            {
+                return Current;
+            }
+        }
 
-   //     public Car Current
-   //     {
-   //         get
-   //         {
-   //             try
-   //             {
-   //                 return parkingSpots[position];
-   //             }
-   //             catch (ArgumentOutOfRangeException)
-   //             {
-   //                 throw new InvalidOperationException();
-   //             }
-   //         }
-   //     }
+        public Car Current
+        {
+            get
+            {
+                try
+                {
+                    return parkingSpots[position];
+                }
+                catch (ArgumentOutOfRangeException)
+                {
+                    throw new InvalidOperationException();
+                }
+            }
+        }
 
-   //     public bool MoveNext()
-   //     {
-   //         position++;
-   //         return (position < parkingSpots.Length);
-   //     }
+        public bool MoveNext()
+        {
+            position++;
+            return (position < parkingSpots.Length);
+        }
 
-   //     public void Reset()
-   //     {
-   //         position = -1;
-   //     }
-   // }
+        public void Reset()
+        {
+            position = -1;
+        }
+    }
 }

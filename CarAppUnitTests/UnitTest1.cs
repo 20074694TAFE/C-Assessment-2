@@ -220,7 +220,7 @@ namespace CarAppUnitTests
             garage.TryAddCarByPosition(car6, 17);
             garage.TryAddCarByPosition(car7, 19);
 
-            List<Car> list = garage.SearchByYear(garage.GetCarsFromLot(), 2010, 2021);
+            List<Car> list = garage.SearchbyYear(garage.GetCarsFromLot(), 2010, 2021);
 
             Assert.AreEqual(3, list.Count);
             Assert.IsTrue(garage.HasCar(list, car1));
@@ -249,7 +249,7 @@ namespace CarAppUnitTests
             garage.TryAddCarByPosition(car6, 17);
             garage.TryAddCarByPosition(car7, 19);
 
-            List<Car> list = garage.SearchByBudget(garage.GetCarsFromLot(), 0, 9000);
+            List<Car> list = garage.SearchbyBudget(garage.GetCarsFromLot(), 0, 9000);
             
             Assert.AreEqual(3, list.Count);
             Assert.IsTrue(garage.HasCar(list, car4));
@@ -306,7 +306,7 @@ namespace CarAppUnitTests
             garage.TryAddCarByPosition(car6, 17);
             garage.TryAddCarByPosition(car7, 19);
 
-            List<Car> list = garage.SearchByMake(garage.GetCarsFromLot(), Make.White);
+            List<Car> list = garage.SearchbyMake(garage.GetCarsFromLot(), Make.White);
 
             Assert.AreEqual(2, list.Count);
             Assert.IsTrue(garage.HasCar(list, car5));

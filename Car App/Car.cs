@@ -29,7 +29,7 @@ namespace Car_App
                 }
                 else
                 {
-                    throw new ArgumentException();
+                    throw new ArgumentException("Length of rego number must be 8.");
                 }
             }
         }
@@ -42,6 +42,10 @@ namespace Car_App
             }
             set
             {
+                if (value == Make.None)
+                {
+                    throw new ArgumentOutOfRangeException("Car make cannot be set to None.");
+                }
                 carMake = value;
             }
         }
@@ -54,6 +58,10 @@ namespace Car_App
             }
             set
             {
+                if(value == Model.None)
+                {
+                    throw new ArgumentOutOfRangeException("Car model cannot be set to None.");
+                }
                 carModel = value;
             }
         }
@@ -66,9 +74,9 @@ namespace Car_App
             }
             set
             {
-                if(value <= 1900)
+                if(value < 1900)
                 {
-                    throw new ArgumentOutOfRangeException();
+                    throw new ArgumentOutOfRangeException("Car year must be greater than 1900.");
                 }
                 else
                 {
@@ -87,7 +95,7 @@ namespace Car_App
             {
                 if(value < 0)
                 {
-                    throw new ArgumentOutOfRangeException();
+                    throw new ArgumentOutOfRangeException("Price cannot be a negative value.");
                 }
                 else
                 {
@@ -157,7 +165,8 @@ namespace Car_App
         Grey,
         Red,
         Blue,
-        Yellow
+        Yellow,
+        None
     }
 
     public enum Model
@@ -169,6 +178,7 @@ namespace Car_App
         StationWagon,
         SportsCar,
         HatchBack,
-        Convertible
+        Convertible,
+        None
     }
 }

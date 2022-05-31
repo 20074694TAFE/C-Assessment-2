@@ -24,7 +24,7 @@ namespace Car_App
         Garage garage = new Garage();
         public MainWindow()
         {
-            InitializeComponent();
+            
             Car car1 = new Car("25006HRT",Make.Black,Model.SUV,2010,20000);
             Car car2 = new Car("34218JJT",Make.Grey,Model.Sudan,2005,10000);
             Car car3 = new Car("90045QER",Make.Red,Model.SportsCar,2020,200000);
@@ -35,6 +35,58 @@ namespace Car_App
             garage.TryAddCarByPosition(car3, 7);
             garage.TryAddCarByPosition(car4, 11);
             garage.TryAddCarByPosition(car5, 15);
+            InitializeComponent();
+            ListBoxCars.ItemsSource = garage.GetCarsFromLot();
+            ComboboxMake.ItemsSource = Enum.GetValues(typeof(Make)).Cast<Make>();
+            ComboboxMake.SelectedItem = Make.None;
+            ComboboxModel.ItemsSource = Enum.GetValues(typeof(Model)).Cast<Model>();
+            ComboboxModel.SelectedItem = Model.None;
+        }
+
+        private void ListBoxSelectionEvent(object sender, SelectionChangedEventArgs e)
+        {
+            
+
+        }
+
+        private void SearchButtonClicked(object sender, RoutedEventArgs e)
+        {
+            List<Car> search = garage.GetCarsFromLot();
+            try
+            {
+                if (TextboxBudgetMin.Text != "" || TextboxBudgetMax.Text != "")
+                {
+                    search = garage.SearchbyBudget(search, TextboxBudgetMin.Text == "" ? 0 : Int32.Parse(TextboxBudgetMin.Text), TextboxBudgetMax.Text == "" ? Int32.MaxValue : Int32.Parse(TextboxBudgetMax.Text));
+                }   
+                if (TextboxYearMin.Text != "" || TextboxYearMax.Text != "")
+                {
+                    search = garage.SearchbyYear(search, TextboxYearMin.Text == "" ? 1900 : Int32.Parse(TextboxYearMin.Text), TextboxYearMax.Text == "" ? 2100 : Int32.Parse(TextboxYearMax.Text));
+                }
+                if (ComboboxMake.SelectedItem.ToString() != "None")
+                {
+                    search = garage.SearchbyMake(search, (Make)ComboboxMake.SelectedItem);
+                }
+                if (ComboboxModel.SelectedItem.ToString() != "None")
+                {
+                    search = garage.SearchbyModel(search, (Model)ComboboxModel.SelectedItem);
+                }
+                ListBoxCars.ItemsSource = search;
+            }
+            catch(Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+        }
+
+        private void ResetButtonClicked(object sender, RoutedEventArgs e)
+        {
+            TextboxYearMin.Text = "";
+            TextboxYearMax.Text = "";
+            TextboxBudgetMin.Text = "";
+            TextboxBudgetMax.Text = "";
+            ComboboxMake.SelectedItem = Make.None;
+            ComboboxModel.SelectedItem = Model.None;
+            ListBoxCars.ItemsSource = garage.GetCarsFromLot();
         }
     }
 }
