@@ -41,12 +41,16 @@ namespace Car_App
             ComboboxMake.SelectedItem = Make.None;
             ComboboxModel.ItemsSource = Enum.GetValues(typeof(Model)).Cast<Model>();
             ComboboxModel.SelectedItem = Model.None;
+            ComboboxNewMake.ItemsSource = Enum.GetValues(typeof(Make)).Cast<Make>();
+            ComboboxNewMake.SelectedItem = Make.None;
+            ComboboxNewModel.ItemsSource = Enum.GetValues(typeof(Model)).Cast<Model>();
+            ComboboxNewModel.SelectedItem = Model.None;
         }
 
         private void ListBoxSelectionEvent(object sender, SelectionChangedEventArgs e)
         {
 
-            if(ListBoxCars.SelectedItem != null)
+            if(ListBoxCars.SelectedItem != null && ListBoxCars.SelectedItem is Car)
             {
                 CarImage.Source = new BitmapImage(new Uri(@"" + (ListBoxCars.SelectedItem as Car).photoFilename, UriKind.Relative));
             }
@@ -136,6 +140,37 @@ namespace Car_App
             {
                 MessageBox.Show(ex.Message);
             }
+        }
+
+        private void AddCarButtonClicked(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                Car car = new Car(NewRego.Text, (Make)ComboboxNewMake.SelectedItem, (Model)ComboboxNewModel.SelectedItem, Int32.Parse(NewYear.Text), Int32.Parse(NewBudget.Text));
+                if (garage.TryAddCarByPosition(car, Int32.Parse(NewPosition.Text)))
+                {
+                    MessageBox.Show("Car added succesufully");
+                    ListBoxCars.ItemsSource = garage.GetCarsFromLot();
+                }
+                else
+                {
+                    MessageBox.Show("Position not available");
+                }
+            }
+            catch(Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+        }
+
+        private void ClearButtonClicked(object sender, RoutedEventArgs e)
+        {
+            NewBudget.Text = "";
+            NewPosition.Text = "";
+            NewYear.Text = "";
+            NewRego.Text = "";
+            ComboboxNewMake.SelectedItem = Make.None;
+            ComboboxNewModel.SelectedItem = Model.None;
         }
     }
 }
