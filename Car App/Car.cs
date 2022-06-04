@@ -1,8 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Car_App
 {
@@ -13,7 +9,7 @@ namespace Car_App
         private Model carModel;
         private int carYear;
         private float price;
-        string photoFilename;
+        public string photoFilename;
 
         public string RegoNumber
         {
@@ -114,7 +110,7 @@ namespace Car_App
         {
             RegoNumber = "10002GFD";
             CarMake = Make.White;
-            CarModel = Model.Sudan;
+            CarModel = Model.Sedan;
             CarYear = 1950;
             Price = 20000.00f;
             photoFilename = "";
@@ -149,7 +145,7 @@ namespace Car_App
             CarModel = carModel;
             CarYear = carYear;
             Price = price;
-            photoFilename = ""; //TODO: Add filepath based on make and model.
+            photoFilename = "./images/" + CarModel.ToString() + "/" + CarMake.ToString() + ".png"; 
         }
 
         public override string ToString()
@@ -173,9 +169,8 @@ namespace Car_App
     {
         SUV,
         Truck,
-        Sudan,
+        Sedan,
         Coupe,
-        StationWagon,
         SportsCar,
         HatchBack,
         Convertible,

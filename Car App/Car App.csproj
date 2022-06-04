@@ -108,27 +108,58 @@
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>
-    <Resource Include="images\bmw1.jpg">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Resource>
-    <Resource Include="images\bmw2.jpg">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Resource>
-    <Resource Include="images\honda1.jpg">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Resource>
-    <Resource Include="images\honda2.jpg">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Resource>
-    <Resource Include="images\jag1.jpg">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Resource>
-    <Resource Include="images\mustang1.jpg">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Resource>
-    <Resource Include="images\mustang2.jpg">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Resource>
+    <Resource Include="images\Convertible\Black.png" />
+    <Resource Include="images\Convertible\Blue.png" />
+    <Resource Include="images\Convertible\Grey.png" />
+    <Resource Include="images\Convertible\Red.png" />
+    <Resource Include="images\Convertible\White.png" />
+    <Resource Include="images\Convertible\Yellow.png" />
+    <Resource Include="images\Coupe\Black.png" />
+    <Resource Include="images\Coupe\Blue.png" />
+    <Resource Include="images\Coupe\Grey.png" />
+    <Resource Include="images\Coupe\Red.png" />
+    <Resource Include="images\Coupe\White.png" />
+    <Resource Include="images\Coupe\Yellow.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="images\HatchBack\Black.png" />
+    <Resource Include="images\HatchBack\Blue.png" />
+    <Resource Include="images\HatchBack\Grey.png" />
+    <Resource Include="images\HatchBack\Red.png" />
+    <Resource Include="images\HatchBack\White.png" />
+    <Resource Include="images\HatchBack\Yellow.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="images\Sedan\Black.png" />
+    <Resource Include="images\Sedan\Blue.png" />
+    <Resource Include="images\Sedan\Grey.png" />
+    <Resource Include="images\Sedan\Red.png" />
+    <Resource Include="images\Sedan\White.png" />
+    <Resource Include="images\Sedan\Yellow.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="images\SportsCar\Black.png" />
+    <Resource Include="images\SportsCar\Blue.png" />
+    <Resource Include="images\SportsCar\Grey.png" />
+    <Resource Include="images\SportsCar\Red.png" />
+    <Resource Include="images\SportsCar\White.png" />
+    <Resource Include="images\SportsCar\Yellow.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="images\SUV\Black.png" />
+    <Resource Include="images\SUV\Blue.png" />
+    <Resource Include="images\SUV\Grey.png" />
+    <Resource Include="images\SUV\Red.png" />
+    <Resource Include="images\SUV\White.png" />
+    <Resource Include="images\SUV\Yellow.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="images\Truck\Black.png" />
+    <Resource Include="images\Truck\Blue.png" />
+    <Resource Include="images\Truck\Grey.png" />
+    <Resource Include="images\Truck\Red.png" />
+    <Resource Include="images\Truck\White.png" />
+    <Resource Include="images\Truck\Yellow.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

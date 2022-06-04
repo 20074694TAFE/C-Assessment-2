@@ -146,7 +146,11 @@ namespace Car_App
         {
             try
             {
-                Car found = parkingSpots.ToList().Find(car => car.RegoNumber == rego.ToUpper());
+                Car found = null;
+                if(parkingSpots.Cast<Car>().Any(car => car?.RegoNumber == rego.ToUpper()))
+                {
+                    found = parkingSpots.ToList().FirstOrDefault(car => car.RegoNumber == rego.ToUpper());
+                }
                 return found;
             }
             catch (NullReferenceException)
