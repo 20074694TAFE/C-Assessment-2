@@ -182,6 +182,20 @@ namespace Car_App
             return GetEmptySpots().Count();
         }
 
+        public string GetEmptySpotsString()
+        {
+            string str = "";
+            List<int> list = GetEmptySpots();
+            if(list.Count() != 0)
+            {
+                foreach(int num in list)
+                {
+                    str += num.ToString() + " ";
+                }
+            }
+            return str;
+        }
+
         IEnumerator IEnumerable.GetEnumerator()
         {
             return (IEnumerator)GetEnumerator();

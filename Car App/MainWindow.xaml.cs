@@ -45,14 +45,22 @@ namespace Car_App
             ComboboxNewMake.SelectedItem = Make.None;
             ComboboxNewModel.ItemsSource = Enum.GetValues(typeof(Model)).Cast<Model>();
             ComboboxNewModel.SelectedItem = Model.None;
+            EmptySpots.Content = garage.GetEmptySpotsString();
         }
 
         private void ListBoxSelectionEvent(object sender, SelectionChangedEventArgs e)
         {
-
             if(ListBoxCars.SelectedItem != null && ListBoxCars.SelectedItem is Car)
             {
-                CarImage.Source = new BitmapImage(new Uri(@"" + (ListBoxCars.SelectedItem as Car).photoFilename, UriKind.Relative));
+                Car car = (Car)ListBoxCars.SelectedItem;
+                CarImage.Source = new BitmapImage(new Uri(@"" + car.photoFilename, UriKind.Relative));
+                ComboboxNewMake.SelectedItem = car.CarMake;
+                ComboboxNewModel.SelectedItem = car.CarModel;
+                NewBudget.Text = car.Price.ToString();
+                NewRego.Text = car.RegoNumber;
+                NewYear.Text = car.CarYear.ToString();
+                NewPosition.Text = garage.GetPositionOfCar(car).ToString();
+
             }
         }
 
@@ -147,14 +155,23 @@ namespace Car_App
             try
             {
                 Car car = new Car(NewRego.Text, (Make)ComboboxNewMake.SelectedItem, (Model)ComboboxNewModel.SelectedItem, Int32.Parse(NewYear.Text), Int32.Parse(NewBudget.Text));
-                if (garage.TryAddCarByPosition(car, Int32.Parse(NewPosition.Text)))
+                if (garage.ValidateUniqueRego(car))
                 {
-                    MessageBox.Show("Car added succesufully");
-                    ListBoxCars.ItemsSource = garage.GetCarsFromLot();
+                    if (garage.TryAddCarByPosition(car, Int32.Parse(NewPosition.Text)))
+                    {
+                        MessageBox.Show("Car added succesufully");
+                        ListBoxCars.ItemsSource = garage.GetCarsFromLot();
+                        EmptySpots.Content = garage.GetEmptySpotsString();
+                    }
+                    else
+                    {
+                        MessageBox.Show("Position " + NewPosition.Text + " not available");
+                    }
                 }
+                
                 else
                 {
-                    MessageBox.Show("Position not available");
+                    MessageBox.Show("Rego " + car.RegoNumber + " already used by another car.");
                 }
             }
             catch(Exception ex)
@@ -165,12 +182,49 @@ namespace Car_App
 
         private void ClearButtonClicked(object sender, RoutedEventArgs e)
         {
+            ClearInspectArea();
+        }
+
+        private void RemoveButtonClicked(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                if (NewPosition.Text != "")
+                {
+                    int num = Int32.Parse(NewPosition.Text);
+                    if (garage.TryRemoveCarByPosition(num))
+                    {
+                        MessageBox.Show("Successfully removed car from position " + NewPosition.Text);
+                        ClearInspectArea();
+                        ListBoxCars.ItemsSource = garage.GetCarsFromLot();
+                        EmptySpots.Content = garage.GetEmptySpotsString();
+
+                    }
+                    else
+                    {
+                        MessageBox.Show("No car exists at that position.");
+                    }
+                }
+                else
+                {
+                    MessageBox.Show("Please enter a postition to remove car from.");
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+        }
+
+        private void ClearInspectArea()
+        {
             NewBudget.Text = "";
             NewPosition.Text = "";
             NewYear.Text = "";
             NewRego.Text = "";
             ComboboxNewMake.SelectedItem = Make.None;
             ComboboxNewModel.SelectedItem = Model.None;
+            CarImage.Source = null;
         }
     }
 }

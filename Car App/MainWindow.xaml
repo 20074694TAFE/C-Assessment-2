@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:Car_App"
         mc:Ignorable="d"
         Title="MainWindow" Height="800" Width="800">
-    <Grid Background="#FF212325" Margin="0,0,0,-62">
+    <Grid Background="#FF212325" Margin="0,0,0,0">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="20"></ColumnDefinition>
             <ColumnDefinition Width="*"></ColumnDefinition>
@@ -28,28 +28,29 @@
             </Grid.RowDefinitions>
             <ListBox x:Name="ListBoxCars" Grid.RowSpan="2" SelectionChanged="ListBoxSelectionEvent" Foreground="White" Background="Black" >
             </ListBox>
-            <TextBox x:Name="TextboxRego"  Grid.Column="1" HorizontalAlignment="Left" Height="23" Margin="95,26,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120"/>
-            <TextBox x:Name="TextboxYearMin" Grid.Column="1" HorizontalAlignment="Left" Height="23" Margin="95,151,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120"/>
-            <TextBox x:Name="TextboxYearMax" Grid.Column="1" HorizontalAlignment="Left" Height="23" Margin="248,151,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120"/>
-            <TextBox x:Name="TextboxBudgetMin" Grid.Column="1" HorizontalAlignment="Left" Height="23" Margin="95,179,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120" Grid.RowSpan="2"/>
-            <TextBox x:Name="TextboxBudgetMax" Grid.Column="1" HorizontalAlignment="Left" Height="23" Margin="248,179,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120" Grid.RowSpan="2"/>
-            <Label  x:Name="Regolabel" Content="Rego :" Grid.Column="1" HorizontalAlignment="Left" Margin="14,26,0,0" VerticalAlignment="Top" Background="{x:Null}" Foreground="White" Height="32" RenderTransformOrigin="0.5,0.5"/>
-            <Label  x:Name="BudgetLabel" Content="Budget:" Grid.Column="1" HorizontalAlignment="Left" Margin="10,179,0,0" VerticalAlignment="Top" Background="{x:Null}" Foreground="White" Height="32" RenderTransformOrigin="0.5,0.5"/>
-            <Label  x:Name="ModelLabel" Content="Model:" Grid.Column="1" HorizontalAlignment="Left" Margin="11,125,0,0" VerticalAlignment="Top" Background="{x:Null}" Foreground="White" Height="32" RenderTransformOrigin="0.5,0.5"/>
-            <Label  x:Name="YearLabel" Content="Year:" Grid.Column="1" HorizontalAlignment="Left" Margin="18,151,0,0" VerticalAlignment="Top" Background="{x:Null}" Foreground="White" Height="23" RenderTransformOrigin="0.5,0.5"/>
-            <Label  x:Name="MakeLabel" Content="Make:" Grid.Column="1" HorizontalAlignment="Left" Margin="14,98,0,0" VerticalAlignment="Top" Background="{x:Null}" Foreground="White" Height="32" RenderTransformOrigin="0.5,0.5"/>
-            <ComboBox x:Name="ComboboxMake" Grid.Column="1" HorizontalAlignment="Left" Margin="95,98,0,0" VerticalAlignment="Top" Width="120"/>
-            <ComboBox x:Name="ComboboxModel" Grid.Column="1" HorizontalAlignment="Left" Margin="95,125,0,0" VerticalAlignment="Top" Width="120"/>
-            <Button Content="Search" Grid.Column="1" HorizontalAlignment="Left" Margin="95,207,0,0" VerticalAlignment="Top" Width="75" Click="SearchButtonClicked"/>
-            <Button Content="Reset" Grid.Column="1" HorizontalAlignment="Left" Margin="400,279,0,0" VerticalAlignment="Top" Width="75" Click="ResetButtonClicked"/>
-            <Label  x:Name="MinYearLabel" Content="Min" Grid.Column="1" HorizontalAlignment="Left" Margin="65,151,0,0" VerticalAlignment="Top" Background="{x:Null}" Foreground="White" Height="23" RenderTransformOrigin="0.5,0.5"/>
-            <Label  x:Name="MaxYearLabel" Content="Max" Grid.Column="1" HorizontalAlignment="Left" Margin="216,151,0,0" VerticalAlignment="Top" Background="{x:Null}" Foreground="White" Height="32" RenderTransformOrigin="0.5,0.5"/>
-            <Label  x:Name="MinBudgetLabel" Content="Min" Grid.Column="1" HorizontalAlignment="Left" Margin="65,179,0,0" VerticalAlignment="Top" Background="{x:Null}" Foreground="White" Height="23" RenderTransformOrigin="0.5,0.5" Grid.RowSpan="2"/>
-            <Label  x:Name="MaxBudgetLabel" Content="Max" Grid.Column="1" HorizontalAlignment="Left" Margin="216,179,0,0" VerticalAlignment="Top" Background="{x:Null}" Foreground="White" Height="32" RenderTransformOrigin="0.5,0.5" Grid.RowSpan="2"/>
-            <Button Content="Search" Grid.Column="1" HorizontalAlignment="Left" Margin="95,54,0,0" VerticalAlignment="Top" Width="75" Click="RegoSearchButtonCLicked"/>
-            <TextBox x:Name="TextboxCarPosition"  Grid.Column="1" HorizontalAlignment="Left" Height="23" Margin="95,251,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120"/>
-            <Label  x:Name="CarPositionLabel" Content="Car Position :" Grid.Column="1" HorizontalAlignment="Left" Margin="2,251,0,0" VerticalAlignment="Top" Background="{x:Null}" Foreground="White" Height="32" RenderTransformOrigin="0.5,0.5"/>
-            <Button Content="Search" Grid.Column="1" HorizontalAlignment="Left" Margin="95,279,0,0" VerticalAlignment="Top" Width="75" Click="PositionSearchButtonClicked"/>
+            <TextBox x:Name="TextboxRego"  Grid.Column="1" HorizontalAlignment="Left" Height="23" Margin="95,41,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120"/>
+            <TextBox x:Name="TextboxYearMin" Grid.Column="1" HorizontalAlignment="Left" Height="23" Margin="95,166,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120"/>
+            <TextBox x:Name="TextboxYearMax" Grid.Column="1" HorizontalAlignment="Left" Height="23" Margin="248,166,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120"/>
+            <TextBox x:Name="TextboxBudgetMin" Grid.Column="1" HorizontalAlignment="Left" Height="23" Margin="95,194,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120"/>
+            <TextBox x:Name="TextboxBudgetMax" Grid.Column="1" HorizontalAlignment="Left" Height="23" Margin="248,194,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120"/>
+            <Label  x:Name="Regolabel" Content="Rego :" Grid.Column="1" HorizontalAlignment="Left" Margin="14,41,0,0" VerticalAlignment="Top" Background="{x:Null}" Foreground="White" Height="32" RenderTransformOrigin="0.5,0.5"/>
+            <Label  x:Name="BudgetLabel" Content="Budget:" Grid.Column="1" HorizontalAlignment="Left" Margin="10,194,0,0" VerticalAlignment="Top" Background="{x:Null}" Foreground="White" Height="32" RenderTransformOrigin="0.5,0.5"/>
+            <Label  x:Name="ModelLabel" Content="Model:" Grid.Column="1" HorizontalAlignment="Left" Margin="11,140,0,0" VerticalAlignment="Top" Background="{x:Null}" Foreground="White" Height="32" RenderTransformOrigin="0.5,0.5"/>
+            <Label  x:Name="YearLabel" Content="Year:" Grid.Column="1" HorizontalAlignment="Left" Margin="18,166,0,0" VerticalAlignment="Top" Background="{x:Null}" Foreground="White" Height="23" RenderTransformOrigin="0.5,0.5"/>
+            <Label  x:Name="MakeLabel" Content="Make:" Grid.Column="1" HorizontalAlignment="Left" Margin="14,113,0,0" VerticalAlignment="Top" Background="{x:Null}" Foreground="White" Height="32" RenderTransformOrigin="0.5,0.5"/>
+            <ComboBox x:Name="ComboboxMake" Grid.Column="1" HorizontalAlignment="Left" Margin="95,113,0,0" VerticalAlignment="Top" Width="120"/>
+            <ComboBox x:Name="ComboboxModel" Grid.Column="1" HorizontalAlignment="Left" Margin="95,140,0,0" VerticalAlignment="Top" Width="120"/>
+            <Button Content="Search" Grid.Column="1" HorizontalAlignment="Left" Margin="95,222,0,0" VerticalAlignment="Top" Width="75" Click="SearchButtonClicked"/>
+            <Button Content="Reset" Grid.Column="1" HorizontalAlignment="Left" Margin="400,294,0,0" VerticalAlignment="Top" Width="75" Click="ResetButtonClicked"/>
+            <Label  x:Name="MinYearLabel" Content="Min" Grid.Column="1" HorizontalAlignment="Left" Margin="65,166,0,0" VerticalAlignment="Top" Background="{x:Null}" Foreground="White" Height="23" RenderTransformOrigin="0.5,0.5"/>
+            <Label  x:Name="MaxYearLabel" Content="Max" Grid.Column="1" HorizontalAlignment="Left" Margin="216,166,0,0" VerticalAlignment="Top" Background="{x:Null}" Foreground="White" Height="32" RenderTransformOrigin="0.5,0.5"/>
+            <Label  x:Name="MinBudgetLabel" Content="Min" Grid.Column="1" HorizontalAlignment="Left" Margin="65,194,0,0" VerticalAlignment="Top" Background="{x:Null}" Foreground="White" Height="23" RenderTransformOrigin="0.5,0.5"/>
+            <Label  x:Name="MaxBudgetLabel" Content="Max" Grid.Column="1" HorizontalAlignment="Left" Margin="216,194,0,0" VerticalAlignment="Top" Background="{x:Null}" Foreground="White" Height="32" RenderTransformOrigin="0.5,0.5"/>
+            <Button Content="Search" Grid.Column="1" HorizontalAlignment="Left" Margin="95,69,0,0" VerticalAlignment="Top" Width="75" Click="RegoSearchButtonCLicked"/>
+            <TextBox x:Name="TextboxCarPosition"  Grid.Column="1" HorizontalAlignment="Left" Height="23" Margin="95,266,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120"/>
+            <Label  x:Name="CarPositionLabel" Content="Car Position :" Grid.Column="1" HorizontalAlignment="Left" Margin="2,266,0,0" VerticalAlignment="Top" Background="{x:Null}" Foreground="White" Height="32" RenderTransformOrigin="0.5,0.5"/>
+            <Button Content="Search" Grid.Column="1" HorizontalAlignment="Left" Margin="95,294,0,0" VerticalAlignment="Top" Width="75" Click="PositionSearchButtonClicked"/>
+            <Label  x:Name="SearchTitle" Content="Search Cars" Grid.Column="1" HorizontalAlignment="Left" Margin="9,0,0,0" VerticalAlignment="Top" Background="{x:Null}" Foreground="White" Height="32" RenderTransformOrigin="0.5,0.5" FontSize="18" FontWeight="Bold" Width="176"/>
 
 
 
@@ -64,20 +65,24 @@
                 <RowDefinition Height="*"></RowDefinition>
             </Grid.RowDefinitions>
             <Image x:Name="CarImage"  Grid.Row="1" Grid.Column="0" Stretch="Uniform" HorizontalAlignment="Center" VerticalAlignment="Center" />
-            <TextBox x:Name="NewRego" HorizontalAlignment="Left" Height="23" Margin="91,10,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120"  Grid.Row="1" Grid.Column="1"  />
-            <TextBox x:Name="NewYear" HorizontalAlignment="Left" Height="23" Margin="91,93,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120"  Grid.Row="1" Grid.Column="1"  />
-            <TextBox x:Name="NewBudget" HorizontalAlignment="Left" Height="23" Margin="91,121,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120"  Grid.Row="1" Grid.Column="1"  />
-            <ComboBox x:Name="ComboboxNewMake" Grid.Column="1" HorizontalAlignment="Left" Margin="91,38,0,0" Grid.Row="1" VerticalAlignment="Top" Width="120"/>
-            <ComboBox x:Name="ComboboxNewModel" Grid.Column="1" HorizontalAlignment="Left" Margin="91,65,0,0" Grid.Row="1" VerticalAlignment="Top" Width="120"/>
-            <Label  x:Name="NewRegoLabel" Content="Rego :" Grid.Column="1" HorizontalAlignment="Left" Margin="50,4,0,0" VerticalAlignment="Top" Background="{x:Null}" Foreground="White" Height="32" RenderTransformOrigin="0.99,2.438" Grid.Row="1"/>
-            <Label  x:Name="NewMakeLabel" Content="Make :" Grid.Column="1" HorizontalAlignment="Left" Margin="48,33,0,0" VerticalAlignment="Top" Background="{x:Null}" Foreground="White" Height="32" RenderTransformOrigin="0.99,2.438" Grid.Row="1"/>
-            <Label  x:Name="NewModelLabel" Content="Model :" Grid.Column="1" HorizontalAlignment="Left" Margin="43,60,0,0" VerticalAlignment="Top" Background="{x:Null}" Foreground="White" Height="32" RenderTransformOrigin="0.99,2.438" Grid.Row="1"/>
-            <Label  x:Name="NewYearLabel" Content="Year :" Grid.Column="1" HorizontalAlignment="Left" Margin="54,87,0,0" VerticalAlignment="Top" Background="{x:Null}" Foreground="White" Height="32" RenderTransformOrigin="0.99,2.438" Grid.Row="1"/>
-            <Label  x:Name="NewBudgeetLabel" Content="Budget :" Grid.Column="1" HorizontalAlignment="Left" Margin="39,115,0,0" VerticalAlignment="Top" Background="{x:Null}" Foreground="White" Height="32" RenderTransformOrigin="0.99,2.438" Grid.Row="1"/>
-            <TextBox x:Name="NewPosition" HorizontalAlignment="Left" Height="23" Margin="91,149,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120"  Grid.Row="1" Grid.Column="1"  />
-            <Label  x:Name="NewPositionLabel" Content="Car Position :" Grid.Column="1" HorizontalAlignment="Left" Margin="14,143,0,0" VerticalAlignment="Top" Background="{x:Null}" Foreground="White" Height="32" RenderTransformOrigin="0.99,2.438" Grid.Row="1"/>
-            <Button Grid.Column="1" Content="Add Car" HorizontalAlignment="Left" Margin="91,182,0,0" Grid.Row="1" VerticalAlignment="Top" Width="72" Click="AddCarButtonClicked"/>
-            <Button Grid.Column="1" Content="Clear" HorizontalAlignment="Left" Margin="396,182,0,0" Grid.Row="1" VerticalAlignment="Top" Width="72" Click="ClearButtonClicked"/>
+            <TextBox x:Name="NewRego" HorizontalAlignment="Left" Height="23" Margin="91,42,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120"  Grid.Row="1" Grid.Column="1"  />
+            <TextBox x:Name="NewYear" HorizontalAlignment="Left" Height="23" Margin="91,125,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120"  Grid.Row="1" Grid.Column="1"  />
+            <TextBox x:Name="NewBudget" HorizontalAlignment="Left" Height="23" Margin="91,153,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120"  Grid.Row="1" Grid.Column="1"  />
+            <ComboBox x:Name="ComboboxNewMake" Grid.Column="1" HorizontalAlignment="Left" Margin="91,70,0,0" Grid.Row="1" VerticalAlignment="Top" Width="120"/>
+            <ComboBox x:Name="ComboboxNewModel" Grid.Column="1" HorizontalAlignment="Left" Margin="91,97,0,0" Grid.Row="1" VerticalAlignment="Top" Width="120"/>
+            <Label  x:Name="NewRegoLabel" Content="Rego :" Grid.Column="1" HorizontalAlignment="Left" Margin="50,36,0,0" VerticalAlignment="Top" Background="{x:Null}" Foreground="White" Height="32" RenderTransformOrigin="0.99,2.438" Grid.Row="1"/>
+            <Label  x:Name="NewMakeLabel" Content="Make :" Grid.Column="1" HorizontalAlignment="Left" Margin="48,65,0,0" VerticalAlignment="Top" Background="{x:Null}" Foreground="White" Height="32" RenderTransformOrigin="0.99,2.438" Grid.Row="1"/>
+            <Label  x:Name="NewModelLabel" Content="Model :" Grid.Column="1" HorizontalAlignment="Left" Margin="43,92,0,0" VerticalAlignment="Top" Background="{x:Null}" Foreground="White" Height="32" RenderTransformOrigin="0.99,2.438" Grid.Row="1"/>
+            <Label  x:Name="NewYearLabel" Content="Year :" Grid.Column="1" HorizontalAlignment="Left" Margin="54,119,0,0" VerticalAlignment="Top" Background="{x:Null}" Foreground="White" Height="32" RenderTransformOrigin="0.99,2.438" Grid.Row="1"/>
+            <Label  x:Name="NewBudgeetLabel" Content="Budget :" Grid.Column="1" HorizontalAlignment="Left" Margin="39,147,0,0" VerticalAlignment="Top" Background="{x:Null}" Foreground="White" Height="32" RenderTransformOrigin="0.99,2.438" Grid.Row="1"/>
+            <TextBox x:Name="NewPosition" HorizontalAlignment="Left" Height="23" Margin="91,182,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120"  Grid.Row="1" Grid.Column="1"  />
+            <Label  x:Name="NewPositionLabel" Content="Car Position :" Grid.Column="1" HorizontalAlignment="Left" Margin="14,176,0,0" VerticalAlignment="Top" Background="{x:Null}" Foreground="White" Height="32" RenderTransformOrigin="0.99,2.438" Grid.Row="1"/>
+            <Button Grid.Column="1" Content="Add Car" HorizontalAlignment="Left" Margin="91,214,0,0" Grid.Row="1" VerticalAlignment="Top" Width="72" Click="AddCarButtonClicked"/>
+            <Button Grid.Column="1" Content="Clear" HorizontalAlignment="Left" Margin="396,214,0,0" Grid.Row="1" VerticalAlignment="Top" Width="72" Click="ClearButtonClicked"/>
+            <Label  x:Name="EmptySpotsLabel" Content="Empty Spots :" Grid.Column="1" HorizontalAlignment="Left" Margin="10,0,0,0" VerticalAlignment="Center" Background="{x:Null}" Foreground="White" Height="32" RenderTransformOrigin="0.99,2.438"/>
+            <Label  x:Name="EmptySpots" Content="" Grid.Column="1" HorizontalAlignment="Left" Margin="97,0,0,0" VerticalAlignment="Center" Background="{x:Null}" Foreground="White" Height="32" RenderTransformOrigin="0.99,2.438" Width="400"/>
+            <Label  x:Name="AddInspectRemoveTitle" Content="Add / Inspect / Remove Cars" Grid.Column="1" HorizontalAlignment="Left" Margin="10,0,0,0" VerticalAlignment="Top" Background="{x:Null}" Foreground="White" Height="32" RenderTransformOrigin="0.5,0.5" FontSize="18" FontWeight="Bold" Width="304" Grid.Row="1"/>
+            <Button Grid.Column="1" Content="Remove Car from this position" HorizontalAlignment="Left" Margin="216,182,0,0" Grid.Row="1" VerticalAlignment="Top" Width="174" Click="RemoveButtonClicked"/>
 
 
 
