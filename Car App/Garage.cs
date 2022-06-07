@@ -7,14 +7,14 @@ using System.Threading.Tasks;
 
 namespace Car_App
 {
-    public class Garage : IEnumerable
+    public class Garage /*: IEnumerable*/
     {
         public Car[] parkingSpots = new Car[20];
         public List<Car> SoldCars = new List<Car>();
 
         /// <summary>
         /// <para>Adds car to first available position, returns true if successful, returns false if not.</para>
-        /// <br>A false return indicates that there are no available positions left, or not unique rego.</br>
+        /// <br>A false return indicates that there are no available positions left.</br>
         /// </summary>
         /// <param name="car"></param>
         /// <returns></returns>
@@ -32,7 +32,7 @@ namespace Car_App
         }
         /// <summary>
         /// <para>Adds car by position, returns true if successful, returns false if not.</para>
-        /// <br>A false return indicates that the current position is already taken, or not unique rego.</br>
+        /// <br>A false return indicates that the current position is already taken.</br>
         /// </summary>
         /// <param name="car"></param>
         /// <param name="position">Number between 1 and 20</param>
@@ -68,16 +68,16 @@ namespace Car_App
                     return false;
                 }
             }
-            if(SoldCars.Count() != 0)
-            {
-                foreach (Car soldCar in SoldCars)
-                {
-                    if (soldCar?.RegoNumber == car.RegoNumber)
-                    {
-                        return false;
-                    }
-                }
-            }
+            //if(SoldCars.Count() != 0)
+            //{
+            //    foreach (Car soldCar in SoldCars)
+            //    {
+            //        if (soldCar?.RegoNumber == car.RegoNumber)
+            //        {
+            //            return false;
+            //        }
+            //    }
+            //}
             return true;
         }
 
@@ -114,6 +114,14 @@ namespace Car_App
            return list.Contains(car);
         }
 
+        /// <summary>
+        /// Search for cars inbetween min and max budget values.
+        /// Will throw an exception if min is greater than max.
+        /// </summary>
+        /// <param name="cars"></param>
+        /// <param name="min"></param>
+        /// <param name="max"></param>
+        /// <returns></returns>
         public List<Car> SearchbyBudget(List<Car> cars, float min = 0f, float max = float.MaxValue)
         {
             if (min > max)
@@ -133,6 +141,14 @@ namespace Car_App
             return cars.Where(car => car.CarMake == make).ToList();
         }
 
+        /// <summary>
+        /// Search for cars inbetween min and max year values.
+        /// Will throw an exception if min is greater than max.
+        /// </summary>
+        /// <param name="cars"></param>
+        /// <param name="min"></param>
+        /// <param name="max"></param>
+        /// <returns></returns>
         public List<Car> SearchbyYear(List<Car> cars, int min, int max)
         {
             if (min > max)
@@ -142,6 +158,7 @@ namespace Car_App
             return cars.Where(car => car.CarYear <= max && car.CarYear >= min).ToList();
         }
 
+        
         public Car GetCarByRego(string rego)
         {
             try
@@ -196,59 +213,59 @@ namespace Car_App
             return str;
         }
 
-        IEnumerator IEnumerable.GetEnumerator()
-        {
-            return (IEnumerator)GetEnumerator();
-        }
+        //IEnumerator IEnumerable.GetEnumerator()
+        //{
+        //    return (IEnumerator)GetEnumerator();
+        //}
 
-        public GarageEnum GetEnumerator()
-        {
-            return new GarageEnum(parkingSpots);
-        }
+        //public GarageEnum GetEnumerator()
+        //{
+        //    return new GarageEnum(parkingSpots);
+        //}
     }
 
-    public class GarageEnum : IEnumerator
-    {
-        Car[] parkingSpots;
-        int position = -1;
+    //public class GarageEnum : IEnumerator
+    //{
+    //    Car[] parkingSpots;
+    //    int position = -1;
 
-        public GarageEnum(Car[] list)
-        {
-            parkingSpots = list;
-        }
+    //    public GarageEnum(Car[] list)
+    //    {
+    //        parkingSpots = list;
+    //    }
 
-        object IEnumerator.Current
-        {
-            get
-            {
-                return Current;
-            }
-        }
+    //    object IEnumerator.Current
+    //    {
+    //        get
+    //        {
+    //            return Current;
+    //        }
+    //    }
 
-        public Car Current
-        {
-            get
-            {
-                try
-                {
-                    return parkingSpots[position];
-                }
-                catch (ArgumentOutOfRangeException)
-                {
-                    throw new InvalidOperationException();
-                }
-            }
-        }
+    //    public Car Current
+    //    {
+    //        get
+    //        {
+    //            try
+    //            {
+    //                return parkingSpots[position];
+    //            }
+    //            catch (ArgumentOutOfRangeException)
+    //            {
+    //                throw new InvalidOperationException();
+    //            }
+    //        }
+    //    }
 
-        public bool MoveNext()
-        {
-            position++;
-            return (position < parkingSpots.Length);
-        }
+    //    public bool MoveNext()
+    //    {
+    //        position++;
+    //        return (position < parkingSpots.Length);
+    //    }
 
-        public void Reset()
-        {
-            position = -1;
-        }
-    }
+    //    public void Reset()
+    //    {
+    //        position = -1;
+    //    }
+    //}
 }

@@ -157,15 +157,31 @@ namespace Car_App
                 Car car = new Car(NewRego.Text, (Make)ComboboxNewMake.SelectedItem, (Model)ComboboxNewModel.SelectedItem, Int32.Parse(NewYear.Text), Int32.Parse(NewBudget.Text));
                 if (garage.ValidateUniqueRego(car))
                 {
-                    if (garage.TryAddCarByPosition(car, Int32.Parse(NewPosition.Text)))
+                    if(NewPosition.Text == "")
                     {
-                        MessageBox.Show("Car added succesufully");
-                        ListBoxCars.ItemsSource = garage.GetCarsFromLot();
-                        EmptySpots.Content = garage.GetEmptySpotsString();
+                        if (garage.TryAddCar(car))
+                        {
+                            MessageBox.Show("Car added successfully");
+                            ListBoxCars.ItemsSource = garage.GetCarsFromLot();
+                            EmptySpots.Content = garage.GetEmptySpotsString();
+                        }
+                        else
+                        {
+                            MessageBox.Show("No empty positions available");
+                        }
                     }
                     else
                     {
-                        MessageBox.Show("Position " + NewPosition.Text + " not available");
+                        if (garage.TryAddCarByPosition(car, Int32.Parse(NewPosition.Text)))
+                        {
+                            MessageBox.Show("Car added successfully");
+                            ListBoxCars.ItemsSource = garage.GetCarsFromLot();
+                            EmptySpots.Content = garage.GetEmptySpotsString();
+                        }
+                        else
+                        {
+                            MessageBox.Show("Position " + NewPosition.Text + " not available");
+                        }
                     }
                 }
                 
@@ -207,7 +223,7 @@ namespace Car_App
                 }
                 else
                 {
-                    MessageBox.Show("Please enter a postition to remove car from.");
+                    MessageBox.Show("Please enter a position to remove car from.");
                 }
             }
             catch (Exception ex)

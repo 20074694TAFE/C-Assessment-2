@@ -196,8 +196,8 @@ namespace CarAppUnitTests
 
             Assert.IsTrue(garage.ValidateUniqueRego(car7));
             Assert.IsFalse(garage.ValidateUniqueRego(car6));
-            garage.TryRemoveCarByPosition(15);
-            Assert.IsFalse(garage.ValidateUniqueRego(car6));
+            //garage.TryRemoveCarByPosition(15);
+            //Assert.IsFalse(garage.ValidateUniqueRego(car6));
         }
 
         [TestMethod]
